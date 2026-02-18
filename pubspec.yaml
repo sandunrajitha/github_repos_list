@@ -1,0 +1,26 @@
+name: github_repos_list
+description: "GitHub repository search and favorites app."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^3.2.1
+  riverpod_annotation: ^4.0.2
+  http: ^1.6.0
+  shared_preferences: ^2.5.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  riverpod_generator: ^4.0.3
+  build_runner: ^2.11.1
+
+flutter:
+  uses-material-design: true
