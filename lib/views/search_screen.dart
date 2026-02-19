@@ -7,6 +7,7 @@ import '../view_models/favorites_view_model.dart';
 import '../view_models/search_state.dart';
 import '../view_models/search_view_model.dart';
 import '../widgets/repo_list_tile.dart';
+import 'detail_screen.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -129,7 +130,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         return RepoListTile.fromRepo(
           repo: repo,
           isStarred: isStarred,
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => DetailScreen(fullName: repo.fullName),
+              ),
+            );
+          },
           onStarToggle: () {
             ref
                 .read(favoritesViewModelProvider.notifier)

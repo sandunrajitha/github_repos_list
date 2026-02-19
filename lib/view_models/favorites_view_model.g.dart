@@ -42,7 +42,7 @@ final class FavoritesViewModelProvider
 }
 
 String _$favoritesViewModelHash() =>
-    r'63f5e98a29ae38d816dcf5330d09317ee4408da9';
+    r'a31c7e81f800dc4cf401367e8ecc93617a29d3cd';
 
 abstract class _$FavoritesViewModel extends $Notifier<List<StarredRepo>> {
   List<StarredRepo> build();

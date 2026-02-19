@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../view_models/favorites_view_model.dart';
 import '../widgets/repo_list_tile.dart';
+import 'detail_screen.dart';
 
 class StarListScreen extends ConsumerWidget {
   const StarListScreen({super.key});
@@ -23,7 +24,14 @@ class StarListScreen extends ConsumerWidget {
                   fullName: starred.fullName,
                   avatarUrl: starred.ownerAvatarUrl,
                   isStarred: true,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            DetailScreen(fullName: starred.fullName),
+                      ),
+                    );
+                  },
                   onStarToggle: () {
                     ref
                         .read(favoritesViewModelProvider.notifier)
