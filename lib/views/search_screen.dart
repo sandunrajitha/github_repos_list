@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:github_repos_list/view_models/search_state.dart';
-
+import '../models/starred_repo.dart';
+import '../view_models/favorites_view_model.dart';
+import '../view_models/search_state.dart';
 import '../view_models/search_view_model.dart';
 import '../widgets/repo_list_tile.dart';
 
@@ -50,6 +51,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final searchState = ref.watch(searchViewModelProvider);
+    final favorites = ref.watch(favoritesViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Search')),
@@ -76,13 +78,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               onChanged: _onSearchChanged,
             ),
           ),
-          Expanded(child: _buildBody(searchState)),
+          Expanded(child: _buildBody(searchState, favorites)),
         ],
       ),
     );
   }
 
-  Widget _buildBody(SearchState searchState) {
+  Widget _buildBody(SearchState searchState, List<StarredRepo> favorites) {
     if (searchState.query.isEmpty) {
       return const Center(child: Text('Search GitHub repositories'));
     }
@@ -123,11 +125,22 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           );
         }
         final repo = searchState.repos[index];
+        final isStarred = favorites.any((s) => s.id == repo.id);
         return RepoListTile.fromRepo(
           repo: repo,
-          isStarred: false,
+          isStarred: isStarred,
           onTap: () {},
-          onStarToggle: () {},
+          onStarToggle: () {
+            ref
+                .read(favoritesViewModelProvider.notifier)
+                .toggle(
+                  StarredRepo(
+                    id: repo.id,
+                    fullName: repo.fullName,
+                    ownerAvatarUrl: repo.ownerAvatarUrl,
+                  ),
+                );
+          },
         );
       },
     );

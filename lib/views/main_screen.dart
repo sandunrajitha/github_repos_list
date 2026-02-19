@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'search_screen.dart';
+import 'star_list_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,10 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: const [
-          SearchScreen(),
-          Center(child: Text('Favorites')),
-        ],
+        children: const [SearchScreen(), StarListScreen()],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
