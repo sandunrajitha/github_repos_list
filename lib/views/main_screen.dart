@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'search_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -16,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: const [
-          Center(child: Text('Search')),
+          SearchScreen(),
           Center(child: Text('Favorites')),
         ],
       ),
