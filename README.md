@@ -50,8 +50,8 @@ flutter test
 
 ### iOS
 
-https://github.com/sandunrajitha/github_repos_list/raw/main/github_repos_list_iOS.mp4
+<video src="https://github.com/sandunrajitha/github_repos_list/raw/main/github_repos_list_iOS.mp4" controls width="400"></video>
 
 ### Android
 
-https://github.com/sandunrajitha/github_repos_list/raw/main/github_repos_list_Android.webm
+<video src="https://github.com/sandunrajitha/github_repos_list/raw/main/github_repos_list_Android.webm" controls width="400"></video>
