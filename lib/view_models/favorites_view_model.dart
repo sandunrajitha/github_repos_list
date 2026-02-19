@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../constants.dart';
 import '../models/starred_repo.dart';
 
 part 'favorites_view_model.g.dart';
-
-const _storageKey = 'starred_repos';
 
 @Riverpod(keepAlive: true)
 class FavoritesViewModel extends _$FavoritesViewModel {
@@ -19,7 +18,7 @@ class FavoritesViewModel extends _$FavoritesViewModel {
 
   Future<void> _loadFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_storageKey);
+    final raw = prefs.getString(storageKeyStarredRepos);
     if (raw != null && raw.isNotEmpty) {
       final list = jsonDecode(raw) as List;
       state = list
@@ -45,6 +44,6 @@ class FavoritesViewModel extends _$FavoritesViewModel {
   Future<void> _persist() async {
     final prefs = await SharedPreferences.getInstance();
     final jsonString = jsonEncode(state.map((r) => r.toJson()).toList());
-    await prefs.setString(_storageKey, jsonString);
+    await prefs.setString(storageKeyStarredRepos, jsonString);
   }
 }
